@@ -74,10 +74,8 @@ function calculateMain(a){
 		if(openPara !== -1) {
 			let closePara = currentArray.indexOf(")",openPara); // The last "(" is always associated with the next ")" to appear after it.
 			let newArray = currentArray.slice(openPara+1,closePara); // Creates a new array from the old array's indexes that are between the parenthesis we're currently working with.
-			console.log(`New equation found in parenthesis and being sent for calculation: ${newArray}`); 
 			let spliceNum = closePara - openPara + 1;
 			currentArray.splice(openPara,spliceNum,calculateMain(newArray)); // Sends this new array to be processed through the calcMain function, returns the result and replaces the parenthesized section it was taken from.
-			console.log(`New equation after solving parenthesis is ${currentArray}. Continuing calculation.`);
 		}
 	}
 }
