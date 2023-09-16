@@ -1,18 +1,8 @@
 //const equation = "1+2+10/(2-3)*60*20+(10/2+(5+6/(7+8*(9/10))/7-2.50*400))";
-const pattern = /(\d+\.\d+|\d+|\+|\-|\*|\^|\/|\(|\))/g;
+const pattern = /(\d+\.\d+|\d+|(?<=\D|^)-\d+|\+|\-|x|\^|\/|\(|\))/g;
 
 $("button").click(function () {
-  const calcInput = document.getElementById('equation').value
-	let expression = calcInput.match(pattern);
-	// A for loop to search for "-" and combine them with their respective integer when they represent a negative number and not an operator, since I can't get RegEx to handle both cases.
-	for(let i=0; i<expression.length; i++) { 
-		if(expression[i] === "-") {
-			if(isNaN(expression[i-1]) && expression[i-1] !== ")") { // If the index before the "-" is not a number and also not a closing parenthesis
-				expression[i] = expression[i] + expression[i+1]; // then we combine this index with the index in front of it, which must be a number
-				expression.splice(i+1,1); // and then we remove the index in front of the "-"
-			}
-		}
-	}
+  const expression = document.getElementById('equation').value.match(pattern);
 	let result = calculateMain(expression);
   $("#scount").html(result);
 });
