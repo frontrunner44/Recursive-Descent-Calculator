@@ -1,5 +1,5 @@
 //const equation = "1+2+10/(2-3)*60*20+(10/2+(5+6/(7+8*(9/10))/7-2.50*400))";
-const pattern = /(\d+\.\d+|\d+|(?<=\D|^)-\d+|\+|\-|x|\^|\/|\(|\))/g;
+const pattern = /(\d+\.\d+|\d+|(?<=\))-|(?<=\D|^)-\d+|\+|\-|\*|\^|\/|\(|\))/g;
 
 $("button").click(function () {
   const expression = document.getElementById('equation').value.match(pattern);
